@@ -1,6 +1,6 @@
 ﻿namespace CSharpCodeReorganizer.Core.UnitTests;
 
-public class MemberInfoExtensionsTest
+public class MemberInfoExtensionsTests
 {
     [Theory]
     [InlineData("private const int PrivateConstField = 42;", "PrivateConstField", MemberType.Field, AccessModifier.Private, AdditionalModifier.Const)]
