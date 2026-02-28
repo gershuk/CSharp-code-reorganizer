@@ -2,6 +2,7 @@ using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+
 using CSharpCodeReorganizer.Core;
 using CSharpCodeReorganizer.Core.MemberData;
 
@@ -112,7 +113,7 @@ public class CommandFactory
         }
     }
 
-    static async Task ReorganizeFile(FileInfo inputFile, FileInfo? outputFile, CsReorganizer csReorganizer)
+    private static async Task ReorganizeFile(FileInfo inputFile, FileInfo? outputFile, CsReorganizer csReorganizer)
     {
         await Task.Yield();
         var inPath = inputFile.FullName;

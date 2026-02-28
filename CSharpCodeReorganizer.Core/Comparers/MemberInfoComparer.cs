@@ -1,7 +1,7 @@
 using System.Collections.Frozen;
+
 using CSharpCodeReorganizer.Core.Comparers.Parameters;
 using CSharpCodeReorganizer.Core.MemberData;
-
 
 namespace CSharpCodeReorganizer.Core.Comparers;
 
@@ -44,7 +44,6 @@ public sealed class MemberInfoComparer(in MemberInfoComparerParameters parameter
         ];
 
         Array.Sort(comparers, static (x, y) => x.Parameters.Priority - y.Parameters.Priority);
-
         return comparers;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+
 using CSharpCodeReorganizer.Core.MemberData;
 
 namespace CSharpCodeReorganizer.Core.Comparers.Parameters;

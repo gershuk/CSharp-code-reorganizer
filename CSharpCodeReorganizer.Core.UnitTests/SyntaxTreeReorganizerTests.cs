@@ -68,7 +68,7 @@ public class SyntaxTreeReorganizerTests
                                                                     ?? throw new InvalidOperationException("Member has no identifier"),
                                                                     StringComparer.Ordinal).ToList();
 
-        for (int i = 0; i < classDeclaration.Members.Count; ++i)
+        for (var i = 0; i < classDeclaration.Members.Count; ++i)
         {
             Assert.Equal(expectedFieldMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -92,7 +92,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedFieldMembers = OrderMembersByIdentifier(recordDeclaration.Members);
 
-        for (int i = 0; i < recordDeclaration.Members.Count; ++i)
+        for (var i = 0; i < recordDeclaration.Members.Count; ++i)
         {
             Assert.Equal(expectedFieldMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -116,7 +116,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedFieldMembers = OrderMembersByIdentifier(recordDeclaration.Members);
 
-        for (int i = 0; i < recordDeclaration.Members.Count; ++i)
+        for (var i = 0; i < recordDeclaration.Members.Count; ++i)
         {
             Assert.Equal(expectedFieldMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -144,7 +144,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedFieldMembers = OrderMembersByIdentifier(structDeclaration.Members);
 
-        for (int i = 0; i < structDeclaration.Members.Count; ++i)
+        for (var i = 0; i < structDeclaration.Members.Count; ++i)
         {
             Assert.Equal(expectedFieldMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -169,7 +169,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedMethodMembers = OrderMembersByIdentifier(interfaceDeclaration.Members);
 
-        for (int i = 0; i < newRoot.Members.Count; ++i)
+        for (var i = 0; i < newRoot.Members.Count; ++i)
         {
             Assert.Equal(expectedMethodMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -194,7 +194,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedMembers = OrderMembersByIdentifier(namespaceDeclaration.Members);
 
-        for (int i = 0; i < newRoot.Members.Count; ++i)
+        for (var i = 0; i < newRoot.Members.Count; ++i)
         {
             Assert.Equal(expectedMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -219,7 +219,7 @@ public class SyntaxTreeReorganizerTests
 
         var expectedMembers = OrderMembersByIdentifier(namespaceDeclaration.Members);
 
-        for (int i = 0; i < newRoot.Members.Count; ++i)
+        for (var i = 0; i < newRoot.Members.Count; ++i)
         {
             Assert.Equal(expectedMembers[i].ToString(), newRoot.Members[i].ToString());
         }
@@ -241,7 +241,7 @@ public class SyntaxTreeReorganizerTests
         Assert.NotNull(newRoot);
 
         var expectedUsings = compilationUnit.Usings.OrderBy(UsingInfoExtensions.GetUsingInfo, _usingInfoComparer).ToList();
-        for (int i = 0; i < newRoot.Usings.Count; ++i)
+        for (var i = 0; i < newRoot.Usings.Count; ++i)
         {
             Assert.Equal(expectedUsings[i].ToString(), newRoot.Usings[i].ToString());
         }
@@ -361,7 +361,7 @@ public class SyntaxTreeReorganizerTests
         var classDeclaration = classDeclarations.First();
         var expectedFieldMembers = OrderMembersByIdentifier(classDeclaration.Members);
 
-        for (int i = 0; i < classDeclaration.Members.Count; ++i)
+        for (var i = 0; i < classDeclaration.Members.Count; ++i)
         {
             Assert.Equal(expectedFieldMembers[i].ToString(), classDeclaration.Members[i].ToString());
         }

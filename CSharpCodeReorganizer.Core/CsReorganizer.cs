@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+
 using CSharpCodeReorganizer.Core.Comparers;
 using CSharpCodeReorganizer.Core.Comparers.Parameters;
 using CSharpCodeReorganizer.Core.MemberData;

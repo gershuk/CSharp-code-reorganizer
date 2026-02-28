@@ -13,7 +13,6 @@ public class UsingInfoComparerTests
     private readonly UsingInfoComparerByStatic _usingComparerByStatic;
     private readonly UsingInfoComparerByGlobal _usingComparerByGlobal;
 
-
     public UsingInfoComparerTests()
     {
         _parameters = new()
@@ -39,7 +38,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A");
         var right = new UsingInfo("System.A");
 
-        int result = _usingComparerByNameSystemHigh.Compare(left, right);
+        var result = _usingComparerByNameSystemHigh.Compare(left, right);
 
         Assert.Equal(1, result);
 
@@ -53,7 +52,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("System.A");
         var right = new UsingInfo("A");
 
-        int result = _usingComparerByNameSystemHigh.Compare(left, right);
+        var result = _usingComparerByNameSystemHigh.Compare(left, right);
 
         Assert.Equal(-1, result);
 
@@ -67,7 +66,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A");
         var right = new UsingInfo("B");
 
-        int result = _usingComparerByNameSystemHigh.Compare(left, right);
+        var result = _usingComparerByNameSystemHigh.Compare(left, right);
 
         Assert.Equal(string.CompareOrdinal("A", "B"), result);
 
@@ -81,7 +80,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("System.A");
         var right = new UsingInfo("System.B");
 
-        int result = _usingComparerByNameSystemHigh.Compare(left, right);
+        var result = _usingComparerByNameSystemHigh.Compare(left, right);
 
         Assert.Equal(string.CompareOrdinal("A", "B"), result);
     }
@@ -92,7 +91,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsStatic = false };
         var right = new UsingInfo("A") { IsStatic = true };
 
-        int result = _usingComparerByStatic.Compare(left, right);
+        var result = _usingComparerByStatic.Compare(left, right);
 
         Assert.Equal(-1, result);
     }
@@ -103,7 +102,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsStatic = true };
         var right = new UsingInfo("A") { IsStatic = false };
 
-        int result = _usingComparerByStatic.Compare(left, right);
+        var result = _usingComparerByStatic.Compare(left, right);
 
         Assert.Equal(1, result);
     }
@@ -114,7 +113,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsStatic = true };
         var right = new UsingInfo("A") { IsStatic = true };
 
-        int result = _usingComparerByStatic.Compare(left, right);
+        var result = _usingComparerByStatic.Compare(left, right);
 
         Assert.Equal(0, result);
     }
@@ -125,7 +124,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsGlobal = true };
         var right = new UsingInfo("A") { IsGlobal = false };
 
-        int result = _usingComparerByGlobal.Compare(left, right);
+        var result = _usingComparerByGlobal.Compare(left, right);
 
         Assert.Equal(-1, result);
     }
@@ -136,7 +135,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsGlobal = false };
         var right = new UsingInfo("A") { IsGlobal = true };
 
-        int result = _usingComparerByGlobal.Compare(left, right);
+        var result = _usingComparerByGlobal.Compare(left, right);
 
         Assert.Equal(1, result);
     }
@@ -147,7 +146,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("A") { IsGlobal = true };
         var right = new UsingInfo("A") { IsGlobal = true };
 
-        int result = _usingComparerByGlobal.Compare(left, right);
+        var result = _usingComparerByGlobal.Compare(left, right);
 
         Assert.Equal(0, result);
     }
@@ -158,7 +157,7 @@ public class UsingInfoComparerTests
         var left = new UsingInfo("System.A") { Alias = "X" };
         var right = new UsingInfo("System.B") { Alias = "Y" };
 
-        int result = _usingComparerByAlias.Compare(left, right);
+        var result = _usingComparerByAlias.Compare(left, right);
 
         Assert.Equal(string.CompareOrdinal("X", "Y"), result);
     }
@@ -227,7 +226,7 @@ public class UsingInfoComparerTests
             new ("NMethod1.NMethod2.PublicClass1", isStatic:true)
         ];
 
-        for (int i = 0; i < expected.Length; i++)
+        for (var i = 0; i < expected.Length; i++)
         {
             Assert.Equal(expected[i], usings[i]);
         }

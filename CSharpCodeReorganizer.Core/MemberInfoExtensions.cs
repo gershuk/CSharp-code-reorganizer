@@ -100,7 +100,6 @@ public static class MemberInfoExtensions
         return accessModifier;
     }
 
-
     public static AdditionalModifier GetMemberAdditionalModifier(this MemberDeclarationSyntax memberDeclaration)
     {
         var modifierKinds = memberDeclaration.Modifiers.Select(token => token.Kind()).ToHashSet();

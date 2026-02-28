@@ -42,7 +42,7 @@ public class MemberInfoComparerTests
         var member1 = new MemberInfo { AccessModifier = AccessModifier.Public, MemberType = MemberType.Method };
         var member2 = new MemberInfo { AccessModifier = AccessModifier.Private, MemberType = MemberType.Method };
 
-        int result = _comparer.Compare(member1, member2);
+        var result = _comparer.Compare(member1, member2);
 
         Assert.Equal(-1, result);
     }
@@ -53,7 +53,7 @@ public class MemberInfoComparerTests
         var member1 = new MemberInfo { AdditionalModifier = AdditionalModifier.Static, MemberType = MemberType.Method };
         var member2 = new MemberInfo { AdditionalModifier = AdditionalModifier.None, MemberType = MemberType.Method };
 
-        int result = _comparer.Compare(member1, member2);
+        var result = _comparer.Compare(member1, member2);
 
         Assert.Equal(-1, result);
     }
@@ -64,7 +64,7 @@ public class MemberInfoComparerTests
         var member1 = new MemberInfo { Identifier = "A", MemberType = MemberType.Method };
         var member2 = new MemberInfo { Identifier = "B", MemberType = MemberType.Method };
 
-        int result = _comparer.Compare(member1, member2);
+        var result = _comparer.Compare(member1, member2);
 
         Assert.Equal(-1, result);
     }
@@ -75,7 +75,7 @@ public class MemberInfoComparerTests
         var member1 = new MemberInfo { MemberType = MemberType.Method };
         var member2 = new MemberInfo { MemberType = MemberType.Property };
 
-        int result = _comparer.Compare(member1, member2);
+        var result = _comparer.Compare(member1, member2);
 
         Assert.Equal(-1, result);
     }
@@ -99,7 +99,7 @@ public class MemberInfoComparerTests
             MemberType = MemberType.Property
         };
 
-        int result = _comparer.Compare(member1, member2);
+        var result = _comparer.Compare(member1, member2);
 
         Assert.Equal(-1, result);
     }

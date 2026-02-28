@@ -2,7 +2,7 @@ using System.CommandLine;
 
 namespace CSharpCodeReorganizer.ConsoleTool;
 
-class Program
+internal class Program
 {
     public static async Task<int> Main(string[] args)
     {
