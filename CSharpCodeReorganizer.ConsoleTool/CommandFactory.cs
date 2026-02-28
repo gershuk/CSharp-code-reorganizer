@@ -40,7 +40,20 @@ public class CommandFactory
         }
     }
 
-    private async Task CommandHandler(FileInfo[]? inputFiles, FileInfo[]? outputPaths)
+    async Task ReorganizeFile(FileInfo inputFile, FileInfo? outputFile)
+    {
+        await Task.Yield();
+        var inPath = inputFile.FullName;
+        var outPath = outputFile is null ? inPath : outputFile.FullName;
+
+        var text = await File.ReadAllTextAsync(inPath);
+
+        var reorganizedText = CsReorganizer.Default.Reorganize(text);
+
+        await File.WriteAllTextAsync(outPath, reorganizedText);
+    }
+
+    private async Task CommandHandler(FileInfo[] inputFiles, FileInfo[]? outputPaths)
     {
         ArgumentNullException.ThrowIfNull(inputFiles);
 
@@ -60,25 +73,11 @@ public class CommandFactory
                                         ? Enumerable.Repeat<FileInfo?>(null, inputFiles.Length)
                                         : outputPaths);
 
-        var workers = new List<Func<Task>>();
-        foreach (var (inputFile, outputPath) in pathPairs)
-        {
-            workers.Add(async () =>
-                {
-                    await Task.Yield();
-                    var inPath = inputFile.FullName;
-                    var outPath = outputPath is null ? inPath : outputPath.FullName;
-
-                    var text = await File.ReadAllTextAsync(inPath);
-
-                    var reorganizedText = Reorganizer.Default.Reorganize(text);
-
-                    await File.WriteAllTextAsync(outPath, reorganizedText);
-                    Console.WriteLine($"Processed {inPath} -> {outPath}");
-                });
-        }
-
-        var tasks = workers.Select(w => w()).ToArray();
+        var tasks = pathPairs.Select(((FileInfo Input, FileInfo? Output) files) =>
+            ReorganizeFile(files.Input, files.Output)
+            .ContinueWith((t) => Console.WriteLine(t.Exception is null
+                                                    ? $"Processed {files.Input} -> {files.Output}"
+                                                    : $"Failed to process {files.Input}: {t.Exception}")));
 
         try
         {
