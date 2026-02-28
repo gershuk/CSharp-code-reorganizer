@@ -19,5 +19,5 @@ public readonly struct MemberInfoComparerParameters(SyntaxComparerParameters? me
     public SyntaxComparerParameters MemberTypeComparerParameters { get; init; } = memberTypeComparerParameters ?? new(2);
     public SyntaxComparerParameters IdentifierComparerParameters { get; init; } = identifierComparerParameters ?? new(3);
 
-    public MemberInfoComparerParameters() : this(default, default, default, default, default) { }
+    public MemberInfoComparerParameters() : this(default, default, default, default, default, default, default) { }
 }

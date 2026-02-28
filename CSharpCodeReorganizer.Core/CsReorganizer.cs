@@ -5,6 +5,17 @@ using CSharpCodeReorganizer.Core.MemberData;
 
 namespace CSharpCodeReorganizer.Core;
 
+public readonly struct CsReorganizerParameters
+{
+    public required MemberInfoComparerParameters MemberInfoComparerParams { get; init; }
+    public required UsingInfoComparerParameters UsingInfoComparerParams { get; init; }
+
+    [SetsRequiredMembers]
+    public CsReorganizerParameters(in MemberInfoComparerParameters memberInfoComparerParams = default,
+                                   in UsingInfoComparerParameters usingInfoComparerParams = default) =>
+        (MemberInfoComparerParams, UsingInfoComparerParams) = (memberInfoComparerParams, usingInfoComparerParams);
+}
+
 public sealed class CsReorganizer
 {
     public static CsReorganizer Default { get; } = new();
@@ -19,6 +30,14 @@ public sealed class CsReorganizer
     {
         MemberInfoComparer = memberInfoComparer ?? new MemberInfoComparer(new MemberInfoComparerParameters());
         UsingInfoComparer = usingInfoComparer ?? new UsingInfoComparer(new UsingInfoComparerParameters());
+        _syntaxReorganizerRewriter = new SyntaxTreeReorganizer(MemberInfoComparer, UsingInfoComparer);
+    }
+
+    [SetsRequiredMembers]
+    public CsReorganizer(in CsReorganizerParameters parameters)
+    {
+        MemberInfoComparer = new MemberInfoComparer(parameters.MemberInfoComparerParams);
+        UsingInfoComparer = new UsingInfoComparer(parameters.UsingInfoComparerParams);
         _syntaxReorganizerRewriter = new SyntaxTreeReorganizer(MemberInfoComparer, UsingInfoComparer);
     }
 
