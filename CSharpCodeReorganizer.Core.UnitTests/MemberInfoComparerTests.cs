@@ -1,3 +1,5 @@
+using CSharpCodeReorganizer.Core.Comparers.Parameters;
+
 namespace CSharpCodeReorganizer.Core.UnitTests;
 
 public class MemberInfoComparerTests
@@ -28,7 +30,7 @@ public class MemberInfoComparerTests
                                               { MemberType.Property, 2 }
                                           }.ToFrozenDictionary(),
 
-            IdentifierComparerPriority = new(3, OrderType.ASC)
+            IdentifierComparerParameters = new(3, OrderType.ASC)
         };
 
         _comparer = new MemberInfoComparer(parameters);

@@ -15,6 +15,7 @@ public class MemberInfoExtensionsTests
     [InlineData("~MyClass() { }", "MyClass", MemberType.Destructor, AccessModifier.None, AdditionalModifier.None)]
     [InlineData("public delegate void MyDelegate(int param);", "MyDelegate", MemberType.Delegate, AccessModifier.Public, AdditionalModifier.None)]
     [InlineData("public event EventHandler MyEvent;", "MyEvent", MemberType.Event, AccessModifier.Public, AdditionalModifier.None)]
+    [InlineData("public event EventHandler<Data> DataEvent { add { } remove { } }", "DataEvent", MemberType.Event, AccessModifier.Public, AdditionalModifier.None)]
     [InlineData("public enum MyEnum { Value1, Value2 }", "MyEnum", MemberType.Enum, AccessModifier.Public, AdditionalModifier.None)]
     [InlineData("public interface IMyInterface { }", "IMyInterface", MemberType.Interface, AccessModifier.Public, AdditionalModifier.None)]
     [InlineData("public int MyProperty { get; set; }", "MyProperty", MemberType.Property, AccessModifier.Public, AdditionalModifier.None)]
@@ -24,6 +25,7 @@ public class MemberInfoExtensionsTests
     [InlineData("int IInterface.MyMethod(int param) { }", "MyMethod", MemberType.Method, AccessModifier.ExplicitInterfaceImplementation, AdditionalModifier.None)]
     [InlineData("public struct MyStruct { }", "MyStruct", MemberType.Struct, AccessModifier.Public, AdditionalModifier.None)]
     [InlineData("public class MyClass { }", "MyClass", MemberType.Class, AccessModifier.Public, AdditionalModifier.None)]
+    [InlineData("file class MyClass;", "MyClass", MemberType.Class, AccessModifier.File, AdditionalModifier.None)]
     [InlineData("namespace MyNamespace { }", "MyNamespace", MemberType.Namespace, AccessModifier.None, AdditionalModifier.None)]
     public void GetMemberInfo_ShouldReturnCorrectInfo(string declarationText,
                                                       string expectedIdentifier,
